@@ -1,15 +1,16 @@
 package mysqlDB
 
 import (
-	"_school/internal/core/courses"
-	"_school/internal/core/professors"
-	"_school/internal/core/students"
 	"context"
 	"database/sql"
 	"errors"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/xHappyface/school/internal/core/courses"
+	"github.com/xHappyface/school/internal/core/professors"
+	"github.com/xHappyface/school/internal/core/students"
 
 	_ "github.com/go-sql-driver/mysql"
 )

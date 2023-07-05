@@ -1,12 +1,13 @@
 package ports
 
 import (
-	"_school/internal/adapters/mysqlDB"
-	"_school/internal/core/courses"
-	"_school/internal/core/professors"
-	"_school/internal/core/students"
 	"context"
 	"log"
+
+	"github.com/xHappyface/school/internal/adapters/mysqlDB"
+	"github.com/xHappyface/school/internal/core/courses"
+	"github.com/xHappyface/school/internal/core/professors"
+	"github.com/xHappyface/school/internal/core/students"
 )
 
 type CourseRepository interface {

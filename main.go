@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
-	"_school/internal/ports"
-	"_school/pkg/cli"
+	"github.com/xHappyface/school/internal/ports"
+	"github.com/xHappyface/school/pkg/cli"
 
 	"github.com/joho/godotenv"
 )
@@ -27,8 +27,8 @@ func main() {
 		l.Fatalln("ERR:", err)
 	}
 	defer school.DB.Close()
-	c := cli.NewCLIRepository(os.Stdin, os.Stdout, l)
-	if err = c.Run(school); err != nil {
+	cl := cli.NewCLIRepository(os.Stdin, os.Stdout, l)
+	if err = cl.Run(school); err != nil {
 		l.Fatalln("ERR:", err)
 	}
 }

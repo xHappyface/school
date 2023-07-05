@@ -1,5 +1,10 @@
 package students
 
+import (
+	"fmt"
+	"io"
+)
+
 type Student struct {
 	ID              string
 	Name            string
@@ -8,4 +13,9 @@ type Student struct {
 	Phone           uint
 	IfInternational bool
 	IfOnProbation   bool
+}
+
+func NewStudent(r io.Reader, w io.Writer) error {
+	fmt.Fprintln(w, "New student created.")
+	return nil
 }
