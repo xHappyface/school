@@ -10,7 +10,7 @@ func (handler *SchoolHandler) HandleCmdNew() error {
 	var err error
 	switch handler.obj {
 	case "course":
-		if err = cli.NewCourse(handler.r, handler.w); err != nil {
+		if err = cli.NewCourse(handler.r, handler.w, handler.sch.CourseRepo); err != nil {
 			return err
 		}
 	case "professor":

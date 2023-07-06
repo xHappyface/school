@@ -1,8 +1,6 @@
 package ports
 
 import (
-	"context"
-
 	"github.com/xHappyface/school/api/courses"
 	"github.com/xHappyface/school/api/professors"
 	"github.com/xHappyface/school/api/students"
@@ -41,15 +39,17 @@ type SchoolService struct {
 	StudentRepo   StudentRepository
 }
 
-func NewSchoolService(ctx context.Context, l *logger.SchoolLogger) (*SchoolService, error) {
+// NewSchoolService returns the address of a new school service with a repo for Courses, Professors, and Students
+// with the given logger and milliseconds passed as the context time.
+func NewSchoolService(l *logger.SchoolLogger, milliseconds uint) (*SchoolService, error) {
 	db, err := mysql_db.NewSchoolDB(l)
 	if err != nil {
 		return new(SchoolService), err
 	}
 	return &SchoolService{
 		DB:            db,
-		CourseRepo:    mysql_db.NewSQLCourseRepository(db, ctx, l),
-		ProfessorRepo: mysql_db.NewSQLProfessorRepository(db, ctx, l),
-		StudentRepo:   mysql_db.NewSQLStudentRepository(db, ctx, l),
+		CourseRepo:    mysql_db.NewSQLCourseRepository(db, milliseconds, l),
+		ProfessorRepo: mysql_db.NewSQLProfessorRepository(db, milliseconds, l),
+		StudentRepo:   mysql_db.NewSQLStudentRepository(db, milliseconds, l),
 	}, nil
 }

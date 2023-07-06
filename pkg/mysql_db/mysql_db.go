@@ -17,8 +17,8 @@ const (
 )
 
 var (
-	errZeroRowsAffected  = errors.New("zero rows affected")
-	errZeroRowsRetrieved = errors.New("zero rows retrieved")
+	ErrZeroRowsAffected  = errors.New("zero rows affected")
+	ErrZeroRowsRetrieved = errors.New("zero rows retrieved")
 )
 
 type School struct {

@@ -1,9 +1,7 @@
 package main
 
 import (
-	"context"
 	"os"
-	"time"
 
 	"github.com/xHappyface/school/api/ports"
 	"github.com/xHappyface/school/cmd/cli"
@@ -18,11 +16,8 @@ func main() {
 	if err := godotenv.Load(); err != nil {
 		l.Log(logger.LOG_LEVEL_FATAL_ERR, err.Error())
 	}
-	// set context
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
 	// logic:
-	school, err := ports.NewSchoolService(ctx, l)
+	school, err := ports.NewSchoolService(l, 10_000)
 	if err != nil {
 		l.Log(logger.LOG_LEVEL_FATAL_ERR, err.Error())
 	}
