@@ -2,21 +2,21 @@ package main
 
 import (
 	"context"
-	"log"
 	"os"
 	"time"
 
-	"github.com/xHappyface/school/internal/ports"
-	"github.com/xHappyface/school/pkg/cli"
+	"github.com/xHappyface/school/api/ports"
+	"github.com/xHappyface/school/cmd/cli"
+	"github.com/xHappyface/school/logger"
 
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	l := log.New(os.Stderr, "SCHOOL: ", log.LstdFlags|log.Lmsgprefix|log.Lshortfile)
+	l := logger.New()
 	// load environment
 	if err := godotenv.Load(); err != nil {
-		l.Fatalln("ERR:", err)
+		l.Log(logger.LOG_LEVEL_FATAL_ERR, err.Error())
 	}
 	// set context
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -24,11 +24,11 @@ func main() {
 	// logic:
 	school, err := ports.NewSchoolService(ctx, l)
 	if err != nil {
-		l.Fatalln("ERR:", err)
+		l.Log(logger.LOG_LEVEL_FATAL_ERR, err.Error())
 	}
 	defer school.DB.Close()
 	cl := cli.NewCLIRepository(os.Stdin, os.Stdout, l)
 	if err = cl.Run(school); err != nil {
-		l.Fatalln("ERR:", err)
+		l.Log(logger.LOG_LEVEL_FATAL_ERR, err.Error())
 	}
 }
