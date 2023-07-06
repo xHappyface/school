@@ -1,4 +1,4 @@
-package courses
+package cli
 
 import (
 	"bufio"
@@ -9,16 +9,12 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"github.com/xHappyface/school/api/courses"
 )
 
 var (
 	errInvalidName = errors.New("invalid name")
 )
-
-type Course struct {
-	ID   string
-	Name string
-}
 
 func NewCourse(r io.Reader, w io.Writer) error {
 	cfg, err := getCourseConfig(r, w)
@@ -29,22 +25,22 @@ func NewCourse(r io.Reader, w io.Writer) error {
 	return nil
 }
 
-func getCourseConfig(r io.Reader, w io.Writer) (*Course, error) {
+func getCourseConfig(r io.Reader, w io.Writer) (*courses.Course, error) {
 	scanner := bufio.NewScanner(r)
 	fmt.Fprint(w, "Enter course name: ")
 	scanner.Scan()
 	if err := scanner.Err(); err != nil {
-		return new(Course), err
+		return new(courses.Course), err
 	}
 	name := strings.ToUpper(scanner.Text())
 	match, err := regexp.MatchString(`^\b[ A-Z0-9]+\b$`, name)
 	if err != nil {
-		return new(Course), err
+		return new(courses.Course), err
 	}
 	if !match {
-		return new(Course), errInvalidName
+		return new(courses.Course), errInvalidName
 	}
-	course := &Course{
+	course := &courses.Course{
 		ID:   uuid.NewString(),
 		Name: name,
 	}

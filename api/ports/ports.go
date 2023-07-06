@@ -3,9 +3,9 @@ package ports
 import (
 	"context"
 
-	"github.com/xHappyface/school/core/app/courses"
-	"github.com/xHappyface/school/core/app/professors"
-	"github.com/xHappyface/school/core/app/students"
+	"github.com/xHappyface/school/api/courses"
+	"github.com/xHappyface/school/api/professors"
+	"github.com/xHappyface/school/api/students"
 	"github.com/xHappyface/school/logger"
 	"github.com/xHappyface/school/pkg/mysql_db"
 )

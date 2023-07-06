@@ -5,9 +5,9 @@ import (
 	"io"
 
 	"github.com/xHappyface/school/api/ports"
-	"github.com/xHappyface/school/core/app/courses"
-	"github.com/xHappyface/school/core/app/professors"
-	"github.com/xHappyface/school/core/app/students"
+	"github.com/xHappyface/school/api/professors"
+	"github.com/xHappyface/school/api/students"
+	"github.com/xHappyface/school/pkg/cli"
 )
 
 var (
@@ -36,7 +36,7 @@ func (handler *SchoolHandler) HandleCmdNew() error {
 	var err error
 	switch handler.obj {
 	case "course":
-		if err = courses.NewCourse(handler.r, handler.w); err != nil {
+		if err = cli.NewCourse(handler.r, handler.w); err != nil {
 			return err
 		}
 	case "professor":

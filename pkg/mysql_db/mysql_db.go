@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/xHappyface/school/core/app/courses"
-	"github.com/xHappyface/school/core/app/professors"
-	"github.com/xHappyface/school/core/app/students"
+	"github.com/xHappyface/school/api/courses"
+	"github.com/xHappyface/school/api/professors"
+	"github.com/xHappyface/school/api/students"
 	"github.com/xHappyface/school/logger"
 
 	_ "github.com/go-sql-driver/mysql"
